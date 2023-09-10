@@ -2,8 +2,8 @@
 
 int execute(char **args) {
     if (execve(args[0], args, NULL) == -1) {
-        perror("Error");
-        return -1; // Handle execution error
+        perror("Execution error");
+        return -1; /* Handle execution error */
     }
-    return 0; // Successful execution
+    return 0; /* Successful execution */
 }

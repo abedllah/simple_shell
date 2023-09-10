@@ -8,14 +8,14 @@ int main(void) {
         printf("$ ");
         line = read_line();
         if (line == NULL) {
-            break; // End of file (Ctrl+D)
+            break; /* End of file (Ctrl+D) */
         }
         args = tokenize(line);
         if (args != NULL && args[0] != NULL) {
             execute(args);
         }
 
-        // Cleanup
+        /* Cleanup */
         free(line);
         free(args);
     }

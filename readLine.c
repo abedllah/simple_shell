@@ -5,7 +5,7 @@ char *read_line(void) {
     size_t len = 0;
 
     if (getline(&line, &len, stdin) == -1) {
-        // Handle end of file (Ctrl+D)
+        /* Handle end of file (Ctrl+D) */
         free(line);
         return NULL;
     }
