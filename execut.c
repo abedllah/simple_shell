@@ -1,9 +1,23 @@
 #include "simple_shell.h"
 
-int execute(char **args) {
-    if (execve(args[0], args, NULL) == -1) {
-        perror("Error");
-        return -1; // Handle execution error
+int execute(char **args, char **argv) 
+{
+    pid_t child;
+    int action;
+
+    child = fork();
+    if (child == 0)
+    {
+        if (execve(args[0], args, envir) == -1)
+        {
+            perror(argv[0]);
+            freeArr(args);
+        }
     }
-    return 0; // Successful execution
+    else
+    {
+        waitpid(chdir, &action, 0);
+        freeArr(args);
+    }
+    return (WEXITSTATUS(action));
 }

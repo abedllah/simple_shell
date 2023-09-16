@@ -1,31 +1,42 @@
 #include "simple_shell.h"
 
-char **tokenize(char *line) {
-    char **tokens = malloc(sizeof(char *));
-    char *token;
-    int i = 0;
+char **tokenize(char *line) 
+{
+    char *token = NULL, tmp = NULL ;
+    char **argv = NULL;
+    int cpt = 0, i = 0;
 
-    if (!tokens) {
-        perror("Allocation error");
-        exit(EXIT_FAILURE);
+    if (!line)
+        return (NULL);
+    tmp = strdup(line);
+    token = strtok(line, " \t\n"); /* delim */
+
+    if (token == NULL)
+    {
+        free(line), line = NULL;
+        free(tmp), tmp = NULL;
+        return NULL;
     }
 
-    token = strtok(line, " \n");
-    while (token != NULL) {
-        tokens[i] = strdup(token);
-        if (!tokens[i]) {
-            perror("Allocation error");
-            exit(EXIT_FAILURE);
-        }
-        i++;
-        tokens = realloc(tokens, (i + 1) * sizeof(char *));
-        if (!tokens) {
-            perror("Allocation error");
-            exit(EXIT_FAILURE);
-        }
-        token = strtok(NULL, " \n");
+    while (token) 
+    {
+        cpt++;
+        token = strtok(NULL, "\t\n")
     }
-    tokens[i] = NULL;
+    free(tmp), tmp = NULL;
+    
+    argv = malloc(sizeof(char *) * (cpt + 1));
 
-    return tokens;
+    token = strtok(line, "\t\n");
+    while (token)
+    {
+        argv[i] = strdup(token);
+        token = strtok(line, "\t\n");
+        i++
+    }
+    free(line);
+    argv[i]=NULL;
+    return (argv);
+    
+
 }

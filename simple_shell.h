@@ -4,10 +4,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-// Function prototypes
+extern char **envir;
+
 char *read_line(void);
 char **tokenize(char *line);
-int execute(char **args);
+int execute(char **args, char **argv) ;
 
-#endif /* SIMPLE_SHELL_H */
+void freeArr(char **arr);
+
+int strlen(const char *str);
+char *strcpy(char *dest, const char *src);
+char *strcat(char *dest, const char *src);
+int strcmp(const char *str1, const char *str2);
+char *strdup(const char *str);
+
+
+#endif
