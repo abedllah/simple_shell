@@ -6,11 +6,11 @@
  * return 0
 */
 
-int main(char **argv)
+int main(int ac, char **argv)
 {
     char *line = NULL, **args = NULL;
     int action = 0;
-
+    (void) ac ;
     while (1) 
     {
         write(STDOUT_FILENO, "$ ", 2);
