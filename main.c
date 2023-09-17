@@ -6,10 +6,9 @@
  * return 0
 */
 
-/* int main(int args, char **argv)
+int main(char **argv)
 {
-    char *line=NULL;
-    char **args=NULL;
+    char *line = NULL, **args = NULL;
     int action = 0;
 
     while (1) 
@@ -33,10 +32,10 @@
     }
 
 }
- */
 
 
-int main(int argc, char **argv) 
+
+/* int main(int argc, char **argv) 
 {
     char *line = NULL;
     char **args = NULL;
@@ -62,4 +61,4 @@ int main(int argc, char **argv)
     }
 
     return 0;
-}
+} */
