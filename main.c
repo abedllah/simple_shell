@@ -6,6 +6,8 @@
  * return 0
 */
 
+char **envir;
+
 int main(int ac, char **argv)
 {
     char *line = NULL, **args = NULL;
