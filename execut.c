@@ -16,7 +16,7 @@ int execute(char **args, char **argv)
     }
     else
     {
-        waitpid(chdir, &action, 0);
+        waitpid(child, &action, 0);;
         freeArr(args);
     }
     return (WEXITSTATUS(action));

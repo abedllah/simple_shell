@@ -6,7 +6,7 @@
  * return 0
 */
 
-int main(char **argv) 
+int main(int argc, char **argv)
 {
     char *line=NULL;
     char **args=NULL;
@@ -18,7 +18,7 @@ int main(char **argv)
         line = read_line();
         if (line == NULL) 
         {
-            if (isatty(STDIN_FILENO,))
+            if (isatty(STDIN_FILENO))
                 write(STDOUT_FILENO, "\n", 1);
             return(action); 
         }
@@ -29,8 +29,7 @@ int main(char **argv)
             continue;
         }
         
-        action = execut(args, argv)
+        action = execute(args, argv);
     }
 
-    //return EXIT_SUCCESS;
 }

@@ -2,7 +2,8 @@
 
 char **tokenize(char *line) 
 {
-    char *token = NULL, tmp = NULL ;
+    char *token = NULL;
+    char *tmp = NULL;
     char **argv = NULL;
     int cpt = 0, i = 0;
 
@@ -21,7 +22,7 @@ char **tokenize(char *line)
     while (token) 
     {
         cpt++;
-        token = strtok(NULL, "\t\n")
+        token = strtok(NULL, "\t\n");
     }
     free(tmp), tmp = NULL;
     
@@ -32,7 +33,7 @@ char **tokenize(char *line)
     {
         argv[i] = strdup(token);
         token = strtok(line, "\t\n");
-        i++
+        i++;
     }
     free(line);
     argv[i]=NULL;
