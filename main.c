@@ -11,7 +11,6 @@ int main(int ac, char **argv)
 
     while (1) 
     {
-        write(STDOUT_FILENO, "$ ", 2);
         line = read_line();
         if (line == NULL) 
         {
