@@ -1,18 +1,11 @@
 #include "simple_shell.h"
 
-/**
- * main file
- * argv
- * return 0
-*/
-
-char **envir;
-
-int main(int ac, char **argv)
+int main(int argc, char **argv) 
 {
-    char *line = NULL, **args = NULL;
+    char *line = NULL;
+    char **args = NULL;
     int action = 0;
-    (void) ac ;
+
     while (1) 
     {
         write(STDOUT_FILENO, "$ ", 2);
@@ -21,9 +14,8 @@ int main(int ac, char **argv)
         {
             if (isatty(STDIN_FILENO))
                 write(STDOUT_FILENO, "\n", 1);
-            return(action); 
+            exit(action);
         }
-
 
         args = tokenize(line);
         if (!args) {
@@ -33,7 +25,9 @@ int main(int ac, char **argv)
         action = execute(args, argv);
     }
 
+    return 0;
 }
+
 
 
 
