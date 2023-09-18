@@ -8,11 +8,9 @@ int execute(char **args, char **argv)
     child = fork();
     if (child == 0)
     {
-        argv[0] = args[0];
-
-        if (execve(args[0], args, envir) == -1)
+        if (execvp(args[0], args) == -1)
         {
-            perror(argv[0]); 
+            perror(argv[0]);
             _exit(EXIT_FAILURE);
         }
     }
@@ -23,3 +21,4 @@ int execute(char **args, char **argv)
     }
     return WEXITSTATUS(action);
 }
+
