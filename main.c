@@ -1,5 +1,8 @@
 #include "simple_shell.h"
 
+char **envir;
+
+
 int main(int ac, char **argv)
 {
     char *line = NULL, **args = NULL;
