@@ -1,5 +1,14 @@
 #include "simple_shell.h"
 
+/**
+* main - carries out the read, execute then print output loop
+* @ac: argument count
+* @argv: argument vector
+*
+* Return: 0
+*/
+
+
 char **envir;
 
 int main(int ac, char **argv)

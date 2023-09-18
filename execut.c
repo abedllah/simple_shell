@@ -10,7 +10,7 @@ int execute(char **args, char **argv)
     {
         if (execvp(args[0], args) == -1)
         {
-            perror(argv[0]);
+            perror(argv[0]); //klj
             _exit(EXIT_FAILURE);
         }
     }
@@ -21,4 +21,5 @@ int execute(char **args, char **argv)
     }
     return WEXITSTATUS(action);
 }
+
 
