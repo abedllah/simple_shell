@@ -10,6 +10,7 @@ char *read_line(void)
         write(STDOUT_FILENO, "$ ",2);
 
     char buffer[1024];
+    
     if ((read_result = read(STDIN_FILENO, buffer, sizeof(buffer))) == -1) 
     {
         perror("read");
