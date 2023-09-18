@@ -10,7 +10,7 @@ int execute(char **args, char **argv)
     {
         if (execvp(args[0], args) == -1)
         {
-            perror(argv[0]); //klj
+            perror(argv[0]);
             _exit(EXIT_FAILURE);
         }
     }
