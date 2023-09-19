@@ -15,12 +15,12 @@ int main(int ac, char **argv)
 {
     char *line = NULL, **args = NULL;
     int action = 0;
-    (void) ac;
+    (void) ac ;
 
-    while (1)
+    while (1) 
     {
         line = read_line();
-        if (line == NULL)
+        if (line == NULL) 
         {
             if (isatty(STDIN_FILENO))
                 write(STDOUT_FILENO, "\n", 1);
@@ -28,12 +28,11 @@ int main(int ac, char **argv)
         }
 
         args = tokenize(line);
-        if (!args)
-        {
+        if (!args) {
             continue;
         }
-
-        action = execute(args, argv);
+        
+        action = execute(args);
     }
 
     return 0;
