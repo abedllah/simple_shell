@@ -6,6 +6,7 @@ int execute(char **args, char **argv)
     int action;
 
     char *path = getenv("PATH");
+    char *path_copy;
 
     if (access(args[0], X_OK) == 0)
     {
@@ -26,14 +27,14 @@ int execute(char **args, char **argv)
         return WEXITSTATUS(action);
     }
 
-    char *path_copy = strdup(path); 
+    path_copy = strdup(path); 
     char *token = strtok(path_copy, ":");
     while (token != NULL)
     {
-        char command_path[1024]; 
+        char command_path[1024];
         snprintf(command_path, sizeof(command_path), "%s/%s", token, args[0]);
         
-        if (access(command_path, X_OK) == 0)  
+        if (access(command_path, X_OK) == 0)
         {
             child = fork();
             if (child == 0)
