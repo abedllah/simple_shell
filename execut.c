@@ -4,12 +4,11 @@ int execute(char **args, char **argv)
 {
     pid_t child;
     int action;
-    char *path = getenv("PATH");
-    char *path_copy = strdup(path);
-    char *token = strtok(path_copy, ":");
+    char command_path[1024];
+    char *path;
+    char *path_copy;
+    char *token;
     int found = 0;
-    char command_path[1024]; 
-
 
     if (strchr(args[0], '/') != NULL)
     {
@@ -30,13 +29,15 @@ int execute(char **args, char **argv)
         return WEXITSTATUS(action);
     }
 
-   
+    path = getenv("PATH");
+    path_copy = strdup(path);
+    token = strtok(path_copy, ":");
 
     while (token != NULL)
     {
         snprintf(command_path, sizeof(command_path), "%s/%s", token, args[0]);
-        
-        if (access(command_path, X_OK) == 0) 
+
+        if (access(command_path, X_OK) == 0)
         {
             found = 1;
             break;
@@ -66,4 +67,5 @@ int execute(char **args, char **argv)
 
     fprintf(stderr, "%s: command not found\n", args[0]);
     free(path_copy);
-    return -1; 
+    return -1;
+}
