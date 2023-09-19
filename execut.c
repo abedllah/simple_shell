@@ -10,6 +10,11 @@ int execute(char **args)
     char *token;
     int found = 0;
 
+    if (strcmp(args[0], "exit") == 0)
+    {
+        exit(0);
+    }
+
     if (strchr(args[0], '/') != NULL)
     {
         child = fork();

@@ -7,8 +7,6 @@
 *
 * Return: 0
 */
-
-
 char **envir;
 
 int main(int ac, char **argv)
