@@ -1,6 +1,6 @@
 #include "simple_shell.h"
 
-int execute(char **args, char **argv) 
+int execute(char **args) 
 {
     pid_t child;
     int action;
