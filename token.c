@@ -1,38 +1,45 @@
 #include "simple_shell.h"
 
-char **tokenize(char *line)
+/**
+ * tokenize - a function that split a string
+ * @ptr_line: the parameter
+ *
+ * Return: a string
+ */
+
+char **tokenize(char *ptr_line)
 {
-    char *token = NULL;
-    char **argv = NULL;
-    int cpt = 0, i = 0;
+	char *token = NULL;
+	char **arguments = NULL;
+	int pt = 0, i = 0;
 
-    if (!line)
-        return NULL;
+	if (!ptr_line)
+		return (NULL);
 
-    token = strtok(line, " \t\n"); /* delim */
+	token = strtok(ptr_line, " \t\n"); /* delim */
 
-    if (token == NULL)
-    {
-        free(line), line = NULL;
-        return NULL;
-    }
+	if (token == NULL)
+	{
+		free(ptr_line), ptr_line = NULL;
+		return (NULL);
+	}
 
-    while (token)
-    {
-        cpt++;
-        token = strtok(NULL, "\t\n");
-    }
+	while (token)
+	{
+		pt++;
+		token = strtok(NULL, "\t\n");
+	}
 
-    argv = malloc(sizeof(char *) * (cpt + 1));
+	arguments = malloc(sizeof(char *) * (pt + 1));
 
-    token = strtok(line, "\t\n");
-    while (token)
-    {
-        argv[i] = strdup(token);
-        token = strtok(NULL, "\t\n");
-        i++;
-    }
-    free(line);
-    argv[i] = NULL;
-    return (argv);
+	token = strtok(ptr_line, "\t\n");
+	while (token)
+	{
+		arguments[i] = _strdup(token);
+		token = strtok(NULL, "\t\n");
+		i++;
+	}
+	free(ptr_line);
+	arguments[i] = NULL;
+	return (arguments);
 }

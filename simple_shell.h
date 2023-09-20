@@ -9,18 +9,19 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+
 extern char **envir;
 
 char *read_line(void);
-char **tokenize(char *line);
+char **tokenize(char *ptr_line);
 int execute(char **args);
 
-void freeArr(char **arr);
+void _freeArr(char **arr);
 
 int my_strlen(const char *str);
-char *strcpy(char *dest, const char *src);
-char *strcat(char *dest, const char *src);
-int strcmp(const char *str1, const char *str2);
-char *strdup(const char *str);
+char *_strcpy(char *dest, const char *src);
+char *_strcat(char *dest, const char *src);
+int _strcmp(const char *str1, const char *str2);
+char *_strdup(const char *str);
 
 #endif

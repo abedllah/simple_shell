@@ -1,17 +1,24 @@
 #include "simple_shell.h"
 
-void freeArr(char **arr)
+/**
+ * _freeArr - a function that frees an array
+ * @arr: the parameter
+ */
+
+
+void _freeArr(char **arr)
 {
-    int i;
-    if (!arr)
-        return;
+	int index;
 
-    for (i = 0; arr[i]; i++)
-    {
-        free(arr[i]);
-        arr[i] = NULL;
-    }
+	if (!arr)
+		return;
 
-    free(arr);
-    arr = NULL;
+	for (index = 0; arr[index]; index++)
+	{
+		free(arr[index]);
+		arr[index] = NULL;
+	}
+
+	free(arr);
+	arr = NULL;
 }

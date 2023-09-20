@@ -1,27 +1,32 @@
 #include "simple_shell.h"
 
-char *read_line(void) 
+/**
+ * read_line - a function that reads a line
+ *
+ * Return: a string
+ */
+
+char *read_line(void)
 {
-    char *line = NULL;
-    size_t len = 0;  
-    ssize_t read_result;
+	char *ptr_line = NULL;
+	size_t buf_size = 0;
+	ssize_t read_num;
 
-    if (isatty(STDIN_FILENO))
-        write(STDOUT_FILENO, "$ ", 2);
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "$ ", 2);
 
-    read_result = getline(&line, &len, stdin);
+	read_num = getline(&ptr_line, &buf_size, stdin);
 
-    if (read_result == -1) 
-    {
-        free(line);
-        return NULL;
-    }
+	if (read_num == -1)
+	{
+		free(ptr_line);
+		return (NULL);
+	}
 
-    /* Remove the newline character at the end, if present */
-    if (line[read_result - 1] == '\n') 
-    {
-        line[read_result - 1] = '\0';
-    }
+	if (ptr_line[read_num - 1] == '\n')
+	{
+		ptr_line[read_num - 1] = '\0';
+	}
 
-    return line;
+	return (ptr_line);
 }
