@@ -18,7 +18,7 @@ int execute(char **args);
 
 void _freeArr(char **arr);
 
-int my_strlen(const char *str);
+int _strlen(const char *str);
 char *_strcpy(char *dest, const char *src);
 char *_strcat(char *dest, const char *src);
 int _strcmp(const char *str1, const char *str2);

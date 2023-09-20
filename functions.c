@@ -2,13 +2,13 @@
 #include <stdlib.h>
 
 /**
- * my_strlen - a function that count the length of a string
+ *_strlen - a function that count the length of a string
  * @str: the parameter
  *
  * Return: the length
  */
 
-int my_strlen(const char *str)
+int _strlen(const char *str)
 {
 	int len = 0;
 
@@ -47,15 +47,15 @@ char *_strcpy(char *dest, const char *src)
 
 char *_strcat(char *dest, const char *src)
 {
-	int dest_len = my_strlen(dest);
+	int len = _strlen(dest);
 	int i = 0;
 
 	while (src[i] != '\0')
 	{
-		dest[dest_len + i] = src[i];
+		dest[len + i] = src[i];
 		i++;
 	}
-	dest[dest_len + i] = '\0';
+	dest[len + i] = '\0';
 	return (dest);
 }
 
@@ -80,7 +80,7 @@ int _strcmp(const char *str1, const char *str2)
  * _strdup - a function that duplicates a string
  * @str: the parameter
  *
- * Return: the duplivsted string
+ * Return: the duplicated string
  */
 
 
@@ -89,7 +89,7 @@ char *_strdup(const char *str)
 	int len;
 	char *dup_str;
 
-	len = my_strlen(str);
+	len = _strlen(str);
 	dup_str = malloc((len + 1) * sizeof(char));
 	if (dup_str == NULL)
 		return (NULL);
