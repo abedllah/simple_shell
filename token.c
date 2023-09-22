@@ -12,6 +12,7 @@ char **tokenize(char *ptr_line)
     char *token = NULL;
     char **arguments = NULL;
     int pt = 0, i = 0;
+    int len; 
 
     if (!ptr_line)
         return (NULL);
@@ -29,7 +30,7 @@ char **tokenize(char *ptr_line)
         while (*token == ' ')
             token++;
 
-        int len = strlen(token);
+        len = strlen(token);
         while (len > 0 && token[len - 1] == ' ')
             token[--len] = '\0';
 
