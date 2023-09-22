@@ -16,6 +16,10 @@ char *read_line(void);
 char **tokenize(char *ptr_line);
 int execute(char **args);
 
+int executeCommand(char **args);
+int executePathCommand(char **args);
+
+
 void _freeArr(char **arr);
 
 int _strlen(const char *str);
