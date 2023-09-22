@@ -12,7 +12,7 @@ char **tokenize(char *ptr_line)
     char *token = NULL;
     char **arguments = NULL;
     int pt = 0, i = 0;
-    int len; 
+    int len;
 
     if (!ptr_line)
         return (NULL);
