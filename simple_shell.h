@@ -11,6 +11,7 @@
 
 
 extern char **envir;
+extern char **environ;
 
 char *read_line(void);
 char **tokenize(char *ptr_line);
@@ -18,6 +19,7 @@ int execute(char **args);
 
 int executeCommand(char **args);
 int executePathCommand(char **args);
+void executeEnv(void);
 
 
 void _freeArr(char **arr);

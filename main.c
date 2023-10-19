@@ -8,12 +8,15 @@
 * Return: 0
 */
 
+char **envir;
+
 int main(int ac, char **argv)
 {
 	char *ptr_line = NULL, **arguments = NULL;
 	int action = 0;
 	(void) ac;
 	(void) argv;
+	envir = environ;
 
 	while (1)
 	{

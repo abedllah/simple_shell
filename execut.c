@@ -16,6 +16,11 @@ int execute(char **args)
     {
         exit(0);
     }
+    else if (_strcmp(args[0], "env") == 0)
+    {
+        executeEnv();
+        return 0;
+    }
 
     if (strchr(args[0], '/') != NULL)
     {
@@ -55,6 +60,8 @@ int executeCommand(char **args)
 
     return WEXITSTATUS(action);
 }
+
+
 
 /**
  * executePathCommand - Execute a command using PATH
