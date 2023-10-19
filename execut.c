@@ -17,11 +17,7 @@ int execute(char **args)
     {
         exit(0);
     }
-    else if (_strcmp(args[0], "env") == 0)
-    {
-        executeEnv();
-        return 0;
-    }
+    
     if (strchr(args[0], '/') != NULL)
     {
         return executeCommand(args);
@@ -111,19 +107,4 @@ int executePathCommand(char **args)
     fprintf(stderr, "%s: command not found\n", args[0]);
     free(path_copy);
     return -1;
-}
-
-
-/**
- * executeEnv - Execute the env built-in command
- */
-void executeEnv(void)
-{
-    char **env = envir;
-    while (*env)
-    {
-        write(STDOUT_FILENO, *env, _strlen(*env));
-        write(STDOUT_FILENO, "\n", 1);
-        env++;
-    }
 }
