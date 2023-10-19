@@ -9,7 +9,6 @@
 int execute(char **args)
 {
     if (args[0] == NULL) {
-        // Handle empty input
         return 0;
     }
 
@@ -108,4 +107,3 @@ int executePathCommand(char **args)
     free(path_copy);
     return -1;
 }
-
