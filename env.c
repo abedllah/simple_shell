@@ -5,7 +5,8 @@
  */
 void executeEnv(void)
 {
-    char **env = envir;
+    extern char **environ;
+    char **env = environ;
 
     while (*env)
     {
@@ -13,4 +14,6 @@ void executeEnv(void)
         write(STDOUT_FILENO, "\n", 1);
         env++;
     }
+
+    return;
 }
