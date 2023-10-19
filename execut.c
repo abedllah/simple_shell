@@ -9,7 +9,7 @@
 int execute(char **args)
 {
     if (args[0] == NULL) {
-
+        // Handle empty input
         return 0;
     }
 
@@ -19,9 +19,10 @@ int execute(char **args)
     }
     else if (_strcmp(args[0], "env") == 0)
     {
-        executeEnv();
+        executeEnv(); // Call the env function
         return 0;
     }
+
     if (strchr(args[0], '/') != NULL)
     {
         return executeCommand(args);
