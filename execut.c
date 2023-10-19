@@ -17,11 +17,6 @@ int execute(char **args)
     {
         exit(0);
     }
-    else if (_strcmp(args[0], "env") == 0)
-    {
-        executeEnv(); // Call the env function
-        return 0;
-    }
 
     if (strchr(args[0], '/') != NULL)
     {
@@ -114,16 +109,3 @@ int executePathCommand(char **args)
     return -1;
 }
 
-/**
- * executeEnv - Execute the env built-in command
- */
-void executeEnv(void)
-{
-    char **env = envir;
-    while (*env)
-    {
-        write(STDOUT_FILENO, *env, _strlen(*env));
-        write(STDOUT_FILENO, "\n", 1);
-        env++;
-    }
-}
