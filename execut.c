@@ -8,10 +8,9 @@
  */
 int execute(char **args)
 {
-    if (args[0] == NULL) {
+    if (args[0] == NULL)
         return 0;
-    }
-
+    
     if (_strcmp(args[0], "exit") == 0)
     {
         exit(0);

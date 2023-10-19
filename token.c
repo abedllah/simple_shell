@@ -7,6 +7,7 @@
  *
  * Return: An array of tokenized arguments
  */
+
 char **tokenize(char *ptr_line)
 {
     char *token = NULL;
