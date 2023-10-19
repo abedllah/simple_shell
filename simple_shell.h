@@ -10,8 +10,8 @@
 #include <sys/wait.h>
 
 
-extern char **envir;
 extern char **environ;
+extern char **envir;
 
 char *read_line(void);
 char **tokenize(char *ptr_line);

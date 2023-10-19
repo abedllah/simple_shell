@@ -6,6 +6,7 @@
 void executeEnv(void)
 {
     char **env = envir;
+
     while (*env)
     {
         write(STDOUT_FILENO, *env, _strlen(*env));

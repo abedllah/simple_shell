@@ -1,6 +1,12 @@
 #include "simple_shell.h"
 
 
+/**
+ * tokenize - Tokenize a line into arguments
+ * @ptr_line: The line to tokenize
+ *
+ * Return: An array of tokenized arguments
+ */
 char **tokenize(char *ptr_line)
 {
     char *token = NULL;
@@ -10,7 +16,7 @@ char **tokenize(char *ptr_line)
     if (!ptr_line)
         return (NULL);
 
-    arguments = malloc(sizeof(char *) * 1024); 
+    arguments = malloc(sizeof(char *) * 1024);
     if (!arguments)
     {
         perror("Malloc failed");

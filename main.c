@@ -12,30 +12,30 @@ char **envir;
 
 int main(int ac, char **argv)
 {
-	char *ptr_line = NULL, **arguments = NULL;
-	int action = 0;
-	(void) ac;
-	(void) argv;
-	envir = environ;
+    char *ptr_line = NULL, **arguments = NULL;
+    int action = 0;
+    (void) ac;
+    (void) argv;
+    envir = environ;
 
-	while (1)
-	{
-		ptr_line = read_line();
-		if (ptr_line == NULL)
-		{
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
-			exit(action);
-		}
+    while (1)
+    {
+        ptr_line = read_line();
+        if (ptr_line == NULL)
+        {
+            if (isatty(STDIN_FILENO))
+                write(STDOUT_FILENO, "\n", 1);
+            exit(action);
+        }
 
-		arguments = tokenize(ptr_line);
-		if (!arguments)
-		{
-			continue;
-		}
+        arguments = tokenize(ptr_line);
+        if (!arguments)
+        {
+            continue;
+        }
 
-		action = execute(arguments);
-	}
+        action = execute(arguments);
+    }
 
-	return (0);
+    return (0);
 }
