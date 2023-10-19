@@ -23,6 +23,11 @@ int execute(char **args)
         _freeArr(args);
         return 0;
     }
+    if (executeCommand(args) != 0) 
+    {
+        _freeArr(args);
+        exit(2);
+    }
 
     if (strchr(args[0], '/') != NULL)
     {
