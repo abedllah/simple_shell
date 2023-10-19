@@ -8,16 +8,19 @@
  */
 int execute(char **args)
 {
-    if (args[0] == NULL)
+    if (args[0] == NULL) {
         return 0;
-    
+    }
+
     if (_strcmp(args[0], "exit") == 0)
     {
+        _freeArr(args);
         exit(0);
     }
     else if (_strcmp(args[0], "env") == 0)
     {
         executeEnv();
+        _freeArr(args);
         return 0;
     }
 
@@ -27,9 +30,12 @@ int execute(char **args)
     }
     else
     {
-        return executePathCommand(args);
+        int result = executePathCommand(args);
+        _freeArr(args);
+        return result;
     }
 }
+
 
 /**
  * executeCommand - Execute a command with a full path
