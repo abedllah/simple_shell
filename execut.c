@@ -97,7 +97,7 @@ int executePathCommand(char **args) {
         if (child == 0) {
             if (execvp(command_path, args) == -1) {
                 perror(args[0]);
-                _exit(127); 
+                _exit(127);
             }
         } else {
             waitpid(child, &action, 0);
@@ -106,8 +106,8 @@ int executePathCommand(char **args) {
         free(path_copy);
         return WEXITSTATUS(action);
     } else {
-        fprintf(stderr, "%s: command not found\n", args[0]);
+        fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
         free(path_copy);
-        return 127; 
+        return 127;
     }
 }
