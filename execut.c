@@ -74,8 +74,7 @@ int executeCommand(char **args)
  *
  * Return: Exit status of the executed command
  */
-int executePathCommand(char **args)
-{
+int executePathCommand(char **args) {
     char command_path[1024];
     char *path = getenv("PATH");
     char *path_copy = _strdup(path);
@@ -83,39 +82,32 @@ int executePathCommand(char **args)
     int found = 0;
     int action;
 
-    while (token != NULL)
-    {
+    while (token != NULL) {
         snprintf(command_path, sizeof(command_path), "%s/%s", token, args[0]);
 
-        if (access(command_path, X_OK) == 0)
-        {
+        if (access(command_path, X_OK) == 0) {
             found = 1;
             break;
         }
         token = strtok(NULL, ":");
     }
 
-    if (found)
-    {
+    if (found) {
         pid_t child = fork();
-        if (child == 0)
-        {
-            if (execvp(command_path, args) == -1)
-            {
+        if (child == 0) {
+            if (execvp(command_path, args) == -1) {
                 perror(args[0]);
-                _exit(EXIT_FAILURE);
+                _exit(127); 
             }
-        }
-        else
-        {
+        } else {
             waitpid(child, &action, 0);
             _freeArr(args);
         }
         free(path_copy);
         return WEXITSTATUS(action);
+    } else {
+        fprintf(stderr, "%s: command not found\n", args[0]);
+        free(path_copy);
+        return 127; 
     }
-
-    fprintf(stderr, "%s: command not found\n", args[0]);
-    free(path_copy);
-    return -1;
 }
