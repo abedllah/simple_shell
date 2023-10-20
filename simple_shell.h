@@ -21,8 +21,9 @@ int execute(char **args);
 int executeCommand(char **args);
 int executePathCommand(char **args);
 void executeEnv(void);
+int changeDirectory(char *path);
 
-
+int changeDirectory(char *path);
 void _freeArr(char **arr);
 
 int _strlen(const char *str);

@@ -23,7 +23,14 @@ int execute(char **args)
         _freeArr(args);
         return 0;
     }
-
+    else if (_strcmp(args[0], "cd") == 0)
+    {
+        if (args[1] == NULL) {
+            return changeDirectory(getenv("HOME"));
+        } else {
+            return changeDirectory(args[1]);
+        }
+    }
     if (strchr(args[0], '/') != NULL)
     {
         return executeCommand(args);
