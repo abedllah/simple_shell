@@ -6,37 +6,29 @@
  *
  * Return: Exit status of the executed command
  */
-int execute(char **args)
-{
+int execute(char **args) {
     if (args[0] == NULL) {
         return 0;
     }
 
-    if (_strcmp(args[0], "exit") == 0)
-    {
+    if (_strcmp(args[0], "exit") == 0) {
         _freeArr(args);
         exit(0);
-    }
-    else if (_strcmp(args[0], "env") == 0)
-    {
+    } else if (_strcmp(args[0], "env") == 0) {
         executeEnv();
         _freeArr(args);
         return 0;
-    }
-    else if (_strcmp(args[0], "cd") == 0)
-    {
+    } else if (_strcmp(args[0], "cd") == 0) {
         if (args[1] == NULL) {
             return changeDirectory(getenv("HOME"));
         } else {
             return changeDirectory(args[1]);
         }
     }
-    if (strchr(args[0], '/') != NULL)
-    {
+
+    if (strchr(args[0], '/') != NULL) {
         return executeCommand(args);
-    }
-    else
-    {
+    } else {
         int result = executePathCommand(args);
         _freeArr(args);
         return result;
