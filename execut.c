@@ -14,19 +14,8 @@ int execute(char **args)
 
     if (_strcmp(args[0], "exit") == 0)
     {
-        if (args[1] != NULL) {
-            int exit_status = atoi(args[1]);
-            _freeArr(args);
-            exit(exit_status);
-        } else {
-            _freeArr(args);
-            exit(0);
-        }
-    } else if (_strcmp(args[0], "env") == 0)
-    {
-        executeEnv();
         _freeArr(args);
-        return 0;
+        exit(0);
     }
     else if (_strcmp(args[0], "env") == 0)
     {
