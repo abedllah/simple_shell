@@ -6,19 +6,15 @@
  */
 
 
-void _freeArr(char **arr)
-{
-	int index;
+void _freeArr(char **arr) {
+    int i;
+    if (arr == NULL) {
+        return;
+    }
 
-	if (!arr)
-		return;
-
-	for (index = 0; arr[index]; index++)
-	{
-		free(arr[index]);
-		arr[index] = NULL;
-	}
-
-	free(arr);
-	arr = NULL;
+    for (i = 0; arr[i] != NULL; i++) {
+        free(arr[i]);
+        arr[i] = NULL;
+    }
+    free(arr);
 }

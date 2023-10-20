@@ -42,25 +42,20 @@ int execute(char **args) {
  *
  * Return: Exit status of the executed command
  */
-int executeCommand(char **args)
-{
+int executeCommand(char **args) {
     pid_t child;
     int action;
 
-
     child = fork();
-    if (child == 0)
-    {
-        if (execvp(args[0], args) == -1)
-        {
+    if (child == 0) {
+        if (execvp(args[0], args) == -1) {
             perror(args[0]);
             _exit(EXIT_FAILURE);
         }
-    }
-    else
-    {
+    } else if (child == -1) {
+        perror("fork");
+    } else {
         waitpid(child, &action, 0);
-        _freeArr(args);
     }
 
     return WEXITSTATUS(action);
@@ -99,6 +94,8 @@ int executePathCommand(char **args) {
                 perror(args[0]);
                 _exit(127);
             }
+        } else if (child == -1) {
+            perror("fork");
         } else {
             waitpid(child, &action, 0);
             _freeArr(args);
