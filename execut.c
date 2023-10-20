@@ -12,11 +12,20 @@ int execute(char **args)
         return 0;
     }
 
-    if (_strcmp(args[0], "exit") == 0)
-    {
-        _freeArr(args);
-        exit(0);
+    if (_strcmp(args[0], "exit") == 0) {
+        if (args[1] != NULL) {
+            int exit_status = atoi(args[1]);
+            exit(exit_status);
+        } else {
+            exit(0);
+        }
     }
+    else if (_strcmp(args[0], "env") == 0)
+    {
+        executeEnv();
+        return 0;
+    }
+    
     else if (_strcmp(args[0], "env") == 0)
     {
         executeEnv();
