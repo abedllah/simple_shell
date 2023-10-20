@@ -20,8 +20,10 @@ int execute(char **args) {
         return 0;
     } else if (_strcmp(args[0], "cd") == 0) {
         if (args[1] == NULL) {
+
             return changeDirectory(getenv("HOME"));
         } else {
+
             return changeDirectory(args[1]);
         }
     }
@@ -42,20 +44,25 @@ int execute(char **args) {
  *
  * Return: Exit status of the executed command
  */
-int executeCommand(char **args) {
+int executeCommand(char **args)
+{
     pid_t child;
     int action;
 
+
     child = fork();
-    if (child == 0) {
-        if (execvp(args[0], args) == -1) {
+    if (child == 0)
+    {
+        if (execvp(args[0], args) == -1)
+        {
             perror(args[0]);
             _exit(EXIT_FAILURE);
         }
-    } else if (child == -1) {
-        perror("fork");
-    } else {
+    }
+    else
+    {
         waitpid(child, &action, 0);
+        _freeArr(args);
     }
 
     return WEXITSTATUS(action);
@@ -69,7 +76,8 @@ int executeCommand(char **args) {
  *
  * Return: Exit status of the executed command
  */
-int executePathCommand(char **args) {
+int executePathCommand(char **args)
+{
     char command_path[1024];
     char *path = getenv("PATH");
     char *path_copy = _strdup(path);
@@ -77,34 +85,39 @@ int executePathCommand(char **args) {
     int found = 0;
     int action;
 
-    while (token != NULL) {
+    while (token != NULL)
+    {
         snprintf(command_path, sizeof(command_path), "%s/%s", token, args[0]);
 
-        if (access(command_path, X_OK) == 0) {
+        if (access(command_path, X_OK) == 0)
+        {
             found = 1;
             break;
         }
         token = strtok(NULL, ":");
     }
 
-    if (found) {
+    if (found)
+    {
         pid_t child = fork();
-        if (child == 0) {
-            if (execvp(command_path, args) == -1) {
+        if (child == 0)
+        {
+            if (execvp(command_path, args) == -1)
+            {
                 perror(args[0]);
-                _exit(127);
+                _exit(EXIT_FAILURE);
             }
-        } else if (child == -1) {
-            perror("fork");
-        } else {
+        }
+        else
+        {
             waitpid(child, &action, 0);
             _freeArr(args);
         }
         free(path_copy);
         return WEXITSTATUS(action);
-    } else {
-        fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-        free(path_copy);
-        return 127;
     }
+
+    fprintf(stderr, "%s: command not found\n", args[0]);
+    free(path_copy);
+    return -1;
 }
