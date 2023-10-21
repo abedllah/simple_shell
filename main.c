@@ -1,36 +1,41 @@
 #include "simple_shell.h"
 
+/**
+* main - carries out the read, execute then print output loop
+* @ac: argument count
+* @argv: argument vector
+*
+* Return: 0
+*/
+
 char **envir;
 
-int main(int ac, char **argv) {
+int main(int ac, char **argv)
+{
     char *ptr_line = NULL, **arguments = NULL;
     int action = 0;
-    char *line; 
-    (void)ac;
-    (void)argv;
+    (void) ac;
+    (void) argv;
     envir = environ;
 
-    while (1) {
+    while (1)
+    {
         ptr_line = read_line();
-        if (ptr_line == NULL) {
-            if (isatty(STDIN_FILENO)) {
+        if (ptr_line == NULL)
+        {
+            if (isatty(STDIN_FILENO))
                 write(STDOUT_FILENO, "\n", 1);
-            }
             exit(action);
         }
 
-        line = strtok(ptr_line, "\n");
-        while (line != NULL) {
-            arguments = tokenize(line);
-            if (arguments) {
-                action = execute(arguments);
-            }
-            free(line);
-            line = strtok(NULL, "\n");
+        arguments = tokenize(ptr_line);
+        if (!arguments)
+        {
+            continue;
         }
 
-        free(ptr_line);
+        action = execute(arguments);
     }
 
-    return 0;
+    return (0);
 }
